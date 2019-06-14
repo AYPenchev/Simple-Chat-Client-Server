@@ -40,8 +40,6 @@
             this.btnMessageSend = new System.Windows.Forms.Button();
             this.btnClientName = new System.Windows.Forms.Button();
             this.btnServerConnect = new System.Windows.Forms.Button();
-            this.pictBoxLogo = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictBoxLogo)).BeginInit();
             this.SuspendLayout();
             // 
             // txtServerPort
@@ -155,18 +153,6 @@
             this.btnServerConnect.UseVisualStyleBackColor = true;
             this.btnServerConnect.Click += new System.EventHandler(this.btnServerConnect_Click);
             // 
-            // pictBoxLogo
-            // 
-            this.pictBoxLogo.Cursor = System.Windows.Forms.Cursors.Default;
-            this.pictBoxLogo.Image = ((System.Drawing.Image)(resources.GetObject("pictBoxLogo.Image")));
-            this.pictBoxLogo.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictBoxLogo.InitialImage")));
-            this.pictBoxLogo.Location = new System.Drawing.Point(470, 24);
-            this.pictBoxLogo.Name = "pictBoxLogo";
-            this.pictBoxLogo.Size = new System.Drawing.Size(110, 63);
-            this.pictBoxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictBoxLogo.TabIndex = 23;
-            this.pictBoxLogo.TabStop = false;
-            // 
             // frmClient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -174,7 +160,6 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(598, 443);
-            this.Controls.Add(this.pictBoxLogo);
             this.Controls.Add(this.txtServerPort);
             this.Controls.Add(this.lblServerPort);
             this.Controls.Add(this.txtServerIP);
@@ -186,11 +171,9 @@
             this.Controls.Add(this.btnMessageSend);
             this.Controls.Add(this.btnClientName);
             this.Controls.Add(this.btnServerConnect);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmClient";
             this.Text = "Client";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmClient_FormClosing);
-            ((System.ComponentModel.ISupportInitialize)(this.pictBoxLogo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -209,7 +192,6 @@
         private System.Windows.Forms.Button btnMessageSend;
         private System.Windows.Forms.Button btnClientName;
         private System.Windows.Forms.Button btnServerConnect;
-        private System.Windows.Forms.PictureBox pictBoxLogo;
     }
 }
 

@@ -8,12 +8,7 @@
 ***************************************************/
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net.Sockets;
 using System.Net;
@@ -58,8 +53,8 @@ namespace SimpleChatFormServer
                     item.Value.GetStream().Close();
                 }
                 clientTable.Clear();    // remove all connections                
-                clientCount = 1;                
-                Log.Message("Server Stopped...");
+                clientCount = 1;
+                LogServerForm.Message("Server Stopped...");
                 PrintReceivedData("Server Stopped...");
                 ServerSocket.Stop();
                 ToggleStartButton();
@@ -92,7 +87,7 @@ namespace SimpleChatFormServer
                     clientTable.Add(clientCount, client);
                     Thread clientListShow = new Thread(AddClientToList);
                     clientListShow.Start(clientCount);
-                    Log.Message($"Client - ClientID_{clientCount} connected!");
+                    LogServerForm.Message($"Client - ClientID_{clientCount} connected!");
                     PrintReceivedData($"Client - ClientID_{clientCount} connected!");                    
                     Thread clientThread = new Thread(HandleClients);
                     clientThread.Start(clientCount);
@@ -100,7 +95,7 @@ namespace SimpleChatFormServer
                 }
                 catch (Exception ex)
                 {
-                    Log.Error(ex);
+                    LogServerForm.Error(ex);
                 }
 
             }               
@@ -126,15 +121,15 @@ namespace SimpleChatFormServer
                         if (bufferNoOfBytes == 0) break;
                         string data = Encoding.ASCII.GetString(buffer, 0, bufferNoOfBytes);
                         Broadcast(data);
-                        Log.Message(data);
+                        LogServerForm.Message(data);
                         PrintReceivedData(data);                        
                     }
                     catch (Exception ex)
                     {
-                        Log.Error(ex);
+                        LogServerForm.Error(ex);
                     }
                 }
-                Log.Message($"Client - ClientID_{clientID} disconnected!");
+                LogServerForm.Message($"Client - ClientID_{clientID} disconnected!");
                 PrintReceivedData($"Client - Client ID_{clientID} disconnected!");                
                 clientTable.Remove(clientID);
                 ClientAppendToList(clientID.ToString());
@@ -144,7 +139,7 @@ namespace SimpleChatFormServer
             }
             catch (Exception ex)
             {
-                Log.Error(ex);
+                LogServerForm.Error(ex);
             }
         }
 
@@ -162,7 +157,7 @@ namespace SimpleChatFormServer
             }
             catch (Exception ex)
             {
-                Log.Error(ex);
+                LogServerForm.Error(ex);
             }
 
         }
@@ -232,6 +227,5 @@ namespace SimpleChatFormServer
                 btnServerStart.Text = "Start";
             }
         }
-
     }
 }

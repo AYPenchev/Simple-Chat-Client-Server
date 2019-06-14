@@ -100,7 +100,7 @@ namespace SimpleChatFormClient
                     }
                     catch (Exception ex)
                     {
-                        Log.Error(ex);
+                        LogClientForm.Error(ex);
                     }
                     connection = clientConnector.ConnectDiconnect(ip, port, clientName);
                     clientConnector.ReceiveDataThread = new Thread(new ParameterizedThreadStart(ReceiveData));
@@ -127,7 +127,7 @@ namespace SimpleChatFormClient
             }
             catch (Exception ex)
             {
-                Log.Error(ex);
+                LogClientForm.Error(ex);
             }
             
         }
@@ -151,7 +151,7 @@ namespace SimpleChatFormClient
             }
             catch (Exception ex)
             {
-                Log.Error(ex);
+                LogClientForm.Error(ex);
             }                       
         }
 
@@ -190,11 +190,11 @@ namespace SimpleChatFormClient
                     try
                     {
                         PrintReceivedData(Encoding.ASCII.GetString(receivedByteData, 0, receivedDataSize));
-                        Log.Message(Encoding.ASCII.GetString(receivedByteData, 0, receivedDataSize));
+                        LogClientForm.Message(Encoding.ASCII.GetString(receivedByteData, 0, receivedDataSize));
                     }
                     catch (Exception ex)
                     {
-                        Log.Error(ex);
+                        LogClientForm.Error(ex);
                     }
                 }
                 networkStream.Flush();
@@ -202,7 +202,7 @@ namespace SimpleChatFormClient
             }
             catch (Exception ex)
             {
-                Log.Error(ex);
+                LogClientForm.Error(ex);
             }
 
         }

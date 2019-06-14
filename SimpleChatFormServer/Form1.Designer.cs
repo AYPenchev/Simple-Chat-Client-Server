@@ -35,10 +35,8 @@
             this.txtServerPort = new System.Windows.Forms.TextBox();
             this.lblServerPort = new System.Windows.Forms.Label();
             this.lblServerIP = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblConnectedClients = new System.Windows.Forms.Label();
             this.txtClientList = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // txtMessageDisplay
@@ -52,7 +50,7 @@
             this.txtMessageDisplay.Name = "txtMessageDisplay";
             this.txtMessageDisplay.ReadOnly = true;
             this.txtMessageDisplay.Size = new System.Drawing.Size(535, 333);
-            this.txtMessageDisplay.TabIndex = 29;            
+            this.txtMessageDisplay.TabIndex = 29;
             // 
             // btnServerStart
             // 
@@ -98,15 +96,6 @@
             this.lblServerIP.TabIndex = 45;
             this.lblServerIP.Text = "Server IP:";
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(445, 28);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(110, 62);
-            this.pictureBox1.TabIndex = 46;
-            this.pictureBox1.TabStop = false;
-            // 
             // lblConnectedClients
             // 
             this.lblConnectedClients.AutoSize = true;
@@ -133,17 +122,14 @@
             this.ClientSize = new System.Drawing.Size(574, 470);
             this.Controls.Add(this.txtClientList);
             this.Controls.Add(this.lblConnectedClients);
-            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lblServerIP);
             this.Controls.Add(this.lblServerPort);
             this.Controls.Add(this.txtServerPort);
             this.Controls.Add(this.txtServerIP);
             this.Controls.Add(this.btnServerStart);
             this.Controls.Add(this.txtMessageDisplay);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmServer";
             this.Text = "Server";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -156,7 +142,6 @@
         private System.Windows.Forms.TextBox txtServerPort;
         private System.Windows.Forms.Label lblServerPort;
         private System.Windows.Forms.Label lblServerIP;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label lblConnectedClients;
         private System.Windows.Forms.TextBox txtClientList;
     }
