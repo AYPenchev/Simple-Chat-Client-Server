@@ -1,8 +1,10 @@
 ﻿using System;
 using System.IO;
-static class LogClient
+
+public static class LogClient
 {
-    static int errorId = 0;
+    private static int errorId = 0;
+
     public static void Error(Exception message)
     {
         errorId++;
@@ -24,5 +26,4 @@ static class LogClient
         logChatMessageSW.Flush();
         logChatMessageSW.Close();
     }
-
 }

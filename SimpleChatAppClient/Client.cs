@@ -1,19 +1,20 @@
-﻿using System;
-using System.Text;
-using System.Threading;
-using System.Net;
-using System.Net.Sockets;
-
-namespace SimpleChatAppClient
+﻿namespace SimpleChatAppClient
 {
-    class Client
-    {
+    using System;
+    using System.Text;
+    using System.Threading;
+    using System.Net;
+    using System.Net.Sockets;
 
+    public class Client
+    { 
         public static void Main()
         {
             var port = 8888;
             IPAddress ip = IPAddress.Parse("127.0.0.1");
-            TcpClient client = new TcpClient();            
+
+            TcpClient client = new TcpClient();
+
             Console.Write("Please enter your chat name: ");
             LogClient.Message("Please enter your chat name: ");
             string clientName = Console.ReadLine();
@@ -26,7 +27,7 @@ namespace SimpleChatAppClient
                 thread.Start(client);
 
                 string messageToSend;
-                while (!string.IsNullOrEmpty((messageToSend = Console.ReadLine())))
+                while (!string.IsNullOrEmpty(messageToSend = Console.ReadLine()))
                 {
                     byte[] buffer = Encoding.ASCII.GetBytes(clientName + ": " + messageToSend);
                     networkStream.Write(buffer, 0, buffer.Length);
@@ -35,6 +36,7 @@ namespace SimpleChatAppClient
                 client.Client.Shutdown(SocketShutdown.Send);
                 networkStream.Close();
                 client.Close();
+
                 Console.WriteLine("Disconnecting from server...");
                 LogClient.Message("Disconnecting from server...");
                 Console.ReadKey();
@@ -43,10 +45,9 @@ namespace SimpleChatAppClient
             {
                 LogClient.Error(ex);
             }
-
         }
 
-        static void ReceiveData(object client)
+        private static void ReceiveData(object client)
         {
             try
             {
@@ -63,22 +64,23 @@ namespace SimpleChatAppClient
             }
             catch (Exception ex)
             {
-
                 LogClient.Error(ex);
             }
         }
 
-        public static void ConnectingClient(TcpClient client, IPAddress ip, int port)
+        private static void ConnectingClient(TcpClient client, IPAddress ip, int port)
         {           
             string[] connectingInfo = new string[4];
             connectingInfo[0] = "Connecting to the server";
             connectingInfo[1] = "Connecting to the server.";
             connectingInfo[2] = "Connecting to the server..";
             connectingInfo[3] = "Connecting to the server...";
+
             Random rnd = new Random();
             int waitingTime = rnd.Next(1, 3) * connectingInfo.Length + 1;
 
-            for (int i = 1; i < waitingTime; ++i)       // mock network lag 
+            // Mock network lag 
+            for (int i = 1; i < waitingTime; ++i)       
             {
                 if (i <= connectingInfo.Length)
                 {
@@ -97,7 +99,6 @@ namespace SimpleChatAppClient
                 Thread.Sleep(500);
             }
 
-
             try
             {
                 client.Connect(ip, port);
@@ -109,11 +110,7 @@ namespace SimpleChatAppClient
                 Console.WriteLine("No response from server...");
                 Console.WriteLine(ex.ToString());
                 LogClient.Error(ex);
-            }
-            
-
+            }            
         }
-
-
     }
 }

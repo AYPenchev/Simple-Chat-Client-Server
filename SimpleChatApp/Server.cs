@@ -1,24 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading;
-using System.Net;
-using System.Net.Sockets;
-
-namespace SimpleChatApp
+﻿namespace SimpleChatApp
 {
-    class Server
-    {
-        static readonly Dictionary<int, TcpClient> clientTable = new Dictionary<int, TcpClient>();
-        static readonly object _lock = new object();
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
+    using System.Threading;
+    using System.Net;
+    using System.Net.Sockets;
 
-        static void Main()
+    public class Server
+    {
+        private static readonly Dictionary<int, TcpClient> clientTable = new Dictionary<int, TcpClient>();
+        private static readonly object _lock = new object();
+
+        public static void Main()
         {
             int clientCount = 1;
             var port = 8888;
 
-            TcpListener ServerSocket = new TcpListener(IPAddress.Any, port);
-            ServerSocket.Start();
+            TcpListener serverSocket = new TcpListener(IPAddress.Any, port);
+            serverSocket.Start();
 
             Thread serverListeningMessageOnDisplayThread = new Thread(ServerListeningMessageOnDisplay);
             serverListeningMessageOnDisplayThread.Start();
@@ -27,7 +27,7 @@ namespace SimpleChatApp
             {
                 try
                 {
-                    TcpClient client = ServerSocket.AcceptTcpClient();
+                    TcpClient client = serverSocket.AcceptTcpClient();
                     lock (_lock)
                     {
                         clientTable.Add(clientCount, client);
@@ -47,7 +47,7 @@ namespace SimpleChatApp
             }
         }
 
-        public static void HandleClients(object obj)
+        private static void HandleClients(object obj)
         {
             try
             {
@@ -80,6 +80,7 @@ namespace SimpleChatApp
                         LogServer.Error(ex);
                     }
                 }
+
                 lock (_lock)
                 {
                     clientTable.Remove(clientID);
@@ -96,8 +97,7 @@ namespace SimpleChatApp
             }
         }
 
-
-        public static void Broadcast(string data)
+        private static void Broadcast(string data)
         {
             try
             {
@@ -115,10 +115,9 @@ namespace SimpleChatApp
             {
                 LogServer.Error(ex);
             }
-
         }
 
-        static void ServerListeningMessageOnDisplay()
+        private static void ServerListeningMessageOnDisplay()
         {
             int i = 0;
             string connectingInfo = "Server started and listening for clients";
@@ -142,10 +141,12 @@ namespace SimpleChatApp
 
                 i++;
                 Thread.Sleep(500);
+
+                // if client exist kill the thread
                 if (clientTable.Count != 0)
                 {
                     break;
-                }// if client exist kill the thread
+                }
             }
         }
     }
